@@ -44,3 +44,46 @@ module.exports = class BinarySearchTree {
   }
 
 }
+
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.rigth = null;
+  }
+}
+
+class BinaryTree {
+  constructor() {
+    this.root = null;
+  }
+
+  add(value) {
+    const newNode = new Node(value)
+    if (!this.root) {
+      this.root = newNode;
+      return
+    }
+
+    let currentNode = this.root;
+    while (currentNode) {
+      if (newNode.value < currentNode.value) {
+        if (!currentNode.left) {
+          currentNode.left = newNode;
+          return;
+        }
+        currentNode = currentNode.left;
+      } else {
+        if (!currentNode.rigth) {
+          currentNode.rigth = newNode;
+          return
+        }
+        currentNode = currentNode.rigth;
+      }
+    }
+
+  }
+}
+
+const myTree = new BinaryTree();
+console.log(myTree)
