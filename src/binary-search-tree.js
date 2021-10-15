@@ -16,16 +16,18 @@ module.exports = class BinarySearchTree {
     return this._root;
   }
 
-  add(value) {
-    const newNode = new Node(value)
+  add(data) {
+    const newNode = new Node(data)
     if (!this._root) {
       this._root = newNode;
       return
     }
 
     let currentNode = this._root;
+
     while (currentNode) {
-      if (newNode.value < currentNode.value) {
+      console.log(newNode.data, currentNode.data)
+      if (newNode.data < currentNode.data) {
         if (!currentNode.left) {
           currentNode.left = newNode;
           return;
@@ -41,8 +43,6 @@ module.exports = class BinarySearchTree {
     }
 
   }
-
-
 
   has(/* data */) {
     throw new NotImplementedError('Not implemented');
@@ -70,12 +70,17 @@ module.exports = class BinarySearchTree {
   }
 
 }
-/*
+
 const tree = new module.exports()
 tree.root()
+tree.add(8)
 tree.add(3)
-tree.add(5)
+tree.add(10)
+tree.add(1)
 tree.add(6)
-tree.add(20)
+tree.add(14)
+tree.add(4)
+tree.add(7)
+tree.add(13)
 
-console.log(tree) */
+console.log(tree)
