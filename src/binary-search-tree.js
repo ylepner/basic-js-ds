@@ -1,6 +1,6 @@
 const { NotImplementedError } = require('../extensions/index.js');
 
-// const { Node } = require('../extensions/list-tree.js');
+const { Node } = require('../extensions/list-tree.js');
 
 /**
 * Implement simple binary search tree according to task description
@@ -8,15 +8,41 @@ const { NotImplementedError } = require('../extensions/index.js');
 */
 module.exports = class BinarySearchTree {
 
-  root() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  constructor() {
+    this._root = null;
   }
 
-  add(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  root() {
+    return this._root;
   }
+
+  add(value) {
+    const newNode = new Node(value)
+    if (!this._root) {
+      this._root = newNode;
+      return
+    }
+
+    let currentNode = this._root;
+    while (currentNode) {
+      if (newNode.value < currentNode.value) {
+        if (!currentNode.left) {
+          currentNode.left = newNode;
+          return;
+        }
+        currentNode = currentNode.left;
+      } else {
+        if (!currentNode.rigth) {
+          currentNode.rigth = newNode;
+          return
+        }
+        currentNode = currentNode.rigth;
+      }
+    }
+
+  }
+
+
 
   has(/* data */) {
     throw new NotImplementedError('Not implemented');
@@ -44,46 +70,12 @@ module.exports = class BinarySearchTree {
   }
 
 }
+/*
+const tree = new module.exports()
+tree.root()
+tree.add(3)
+tree.add(5)
+tree.add(6)
+tree.add(20)
 
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.rigth = null;
-  }
-}
-
-class BinaryTree {
-  constructor() {
-    this.root = null;
-  }
-
-  add(value) {
-    const newNode = new Node(value)
-    if (!this.root) {
-      this.root = newNode;
-      return
-    }
-
-    let currentNode = this.root;
-    while (currentNode) {
-      if (newNode.value < currentNode.value) {
-        if (!currentNode.left) {
-          currentNode.left = newNode;
-          return;
-        }
-        currentNode = currentNode.left;
-      } else {
-        if (!currentNode.rigth) {
-          currentNode.rigth = newNode;
-          return
-        }
-        currentNode = currentNode.rigth;
-      }
-    }
-
-  }
-}
-
-const myTree = new BinaryTree();
-console.log(myTree)
+console.log(tree) */
