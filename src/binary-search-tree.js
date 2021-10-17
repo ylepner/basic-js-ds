@@ -26,7 +26,6 @@ module.exports = class BinarySearchTree {
     let currentNode = this._root;
 
     while (currentNode) {
-      console.log(newNode.data, currentNode.data)
       if (newNode.data < currentNode.data) {
         if (!currentNode.left) {
           currentNode.left = newNode;
@@ -34,41 +33,77 @@ module.exports = class BinarySearchTree {
         }
         currentNode = currentNode.left;
       } else {
-        if (!currentNode.rigth) {
-          currentNode.rigth = newNode;
+        if (!currentNode.right) {
+          currentNode.right = newNode;
           return
         }
-        currentNode = currentNode.rigth;
+        currentNode = currentNode.right;
       }
     }
 
   }
 
-  has(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  has(data) {
+    let currentNode = this._root;
+    while (currentNode) {
+      if (currentNode.data === data) {
+        return true
+      }
+      if (data < currentNode.data) {
+        currentNode = currentNode.left
+      } else {
+        currentNode = currentNode.right
+      }
+    }
+    return false
   }
 
-  find(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  find(data) {
+    let currentNode = this._root;
+    while (currentNode) {
+      if (currentNode.data === data) {
+        return currentNode
+      }
+      if (data < currentNode.data) {
+        currentNode = currentNode.left
+      } else {
+        currentNode = currentNode.right
+      }
+    }
+    return null
   }
 
-  remove(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  remove(data) {/* 
+    let currentNode = this._root;
+    while (currentNode) {
+      if (currentNode.data === data) {
+        return currentNode
+      }
+      if (data < currentNode.data) {
+        currentNode = currentNode.left
+      } else {
+        currentNode = currentNode.right
+      }
+    }
+    return null
+  } */
   }
 
   min() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    let currentNode = this._root;
+    while (currentNode.left) {
+      currentNode = currentNode.left
+    }
+    return currentNode.data
   }
 
   max() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    let currentNode = this._root;
+    while (currentNode.right) {
+      currentNode = currentNode.right
+    }
+    return currentNode.data
   }
-
 }
 
 const tree = new module.exports()
@@ -83,4 +118,4 @@ tree.add(4)
 tree.add(7)
 tree.add(13)
 
-console.log(tree)
+console.log(tree.max())
