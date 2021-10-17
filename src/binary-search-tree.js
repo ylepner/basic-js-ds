@@ -73,20 +73,8 @@ module.exports = class BinarySearchTree {
     return null
   }
 
-  remove(data) {/* 
-    let currentNode = this._root;
-    while (currentNode) {
-      if (currentNode.data === data) {
-        return currentNode
-      }
-      if (data < currentNode.data) {
-        currentNode = currentNode.left
-      } else {
-        currentNode = currentNode.right
-      }
-    }
-    return null
-  } */
+  remove(data) {
+
   }
 
   min() {
