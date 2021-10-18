@@ -74,8 +74,44 @@ module.exports = class BinarySearchTree {
   }
 
   remove(data) {
-
+    this._root = this.deleteNode(this._root, data);
   }
+
+  deleteNode(currentNode, data) {
+    if (!currentNode) {
+      return;
+    } else if (data < currentNode.data) {
+      currentNode.left = this.deleteNode(currentNode.left, data);
+      return currentNode;
+    } else if (data > currentNode.data) {
+      currentNode.right = this.deleteNode(currentNode.right, data);
+      return currentNode;
+    } else {
+      if (!currentNode.left && !currentNode.right) {
+        currentNode = null;
+        return currentNode;
+      }
+      if (!currentNode.left) {
+        currentNode = currentNode.right;
+        return currentNode;
+      } else if (!currentNode.right) {
+        currentNode = currentNode.left;
+        return currentNode;
+      }
+      const minNode = this.getMin(currentNode.right);
+      currentNode.data = minNode.data;
+      currentNode.right = this.deleteNode(currentNode.right, minNode.data);
+      return currentNode;
+    }
+  }
+
+  getMin(node) {
+    while (node.left) {
+      node = node.left;
+    }
+    return node;
+  }
+
 
   min() {
     let currentNode = this._root;
@@ -94,6 +130,7 @@ module.exports = class BinarySearchTree {
   }
 }
 
+
 const tree = new module.exports()
 tree.root()
 tree.add(8)
@@ -106,4 +143,4 @@ tree.add(4)
 tree.add(7)
 tree.add(13)
 
-console.log(tree.max())
+console.log(tree.remove(13))
