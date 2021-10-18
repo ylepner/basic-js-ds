@@ -131,7 +131,7 @@ module.exports = class BinarySearchTree {
 }
 
 
-const tree = new module.exports()
+/* const tree = new module.exports()
 tree.root()
 tree.add(8)
 tree.add(3)
@@ -143,4 +143,4 @@ tree.add(4)
 tree.add(7)
 tree.add(13)
 
-console.log(tree.remove(13))
+console.log(tree.remove(13)) */
